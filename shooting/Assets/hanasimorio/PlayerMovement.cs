@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     float y;
 
     //Playerの移動速度の変数
-    [SerializeField] float speed = 5;
+    [SerializeField] float speed = 3;
 
     //Bullet プレハブ
     public GameObject bullet;
@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
     //アイテムカウント
     int Itemcount;
+
 
 
     // Start is called before the first frame update
@@ -82,6 +83,13 @@ public class PlayerMovement : MonoBehaviour
                 Instantiate(bullet, Shotobject3.position, transform.rotation);
             }
 
+            //Itemcount = 2
+            if(Itemcount == 2)
+            {
+                Instantiate(bullet, Shotobject4.position, transform.rotation);
+                Instantiate(bullet, Shotobject5.position, transform.rotation);
+                Instantiate(bullet, Shotobject6.position, transform.rotation);
+            }
         }
 
         
@@ -94,9 +102,15 @@ public class PlayerMovement : MonoBehaviour
     //アイテムをとる判定
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //弾を増やすアイテムをとったら
         if (collision.gameObject.tag == "Item")
         {
             Itemcount += 1;
+        }
+        //速度が上がるアイテムをとったら
+        if(collision.gameObject.tag == "Item02")
+        {
+            speed += 2;
         }
     }
 
