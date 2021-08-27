@@ -5,7 +5,7 @@ using UnityEngine;
 public class BulletController : MonoBehaviour
 {
     //bulletの速度
-    [SerializeField] float bs = 5;
+    [SerializeField] float bs = 8;
     
     //rigidbody2Dを格納
     private Rigidbody2D rb;
@@ -20,9 +20,11 @@ public class BulletController : MonoBehaviour
     void Update()
     {   //前方に球を発射
         rb.velocity = new Vector2(0, bs);
+
     }
 
-   //カメラに映らなくなったら破壊
+
+    //カメラに映らなくなったら破壊
     private void OnBecameInvisible()
     {
         Destroy(gameObject);

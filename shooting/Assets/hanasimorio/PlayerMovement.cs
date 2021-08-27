@@ -17,11 +17,24 @@ public class PlayerMovement : MonoBehaviour
     //Bullet プレハブ
     public GameObject bullet;
 
-    //発射の間隔
-    [SerializeField] int count;
+    //Shotposition
+    public Transform Shotobject1;
+    public Transform Shotobject2;
+    public Transform Shotobject3;
+    public Transform Shotobject4;
+    public Transform Shotobject5;
+    public Transform Shotobject6;
+
+
+
+    //発射間隔
+    public int count;
 
     //レート
-    [SerializeField] int frame;
+    public int frame;
+
+    //アイテムカウント
+    int Itemcount;
 
 
     // Start is called before the first frame update
@@ -30,18 +43,12 @@ public class PlayerMovement : MonoBehaviour
         //Rigidbody2D Conpo を取得して格納
         rb = GetComponent<Rigidbody2D>();
 
-        //bulletの発射処理を実行(完全オート）
-        //StartCoroutine("Shot");
-
-       // frame = 0;//format
-        //count = 10;//fortmat
+        Itemcount = 0;//format
     }
 
     // Update is called once per frame
     void Update()
     {
-        //レートをカウント
-        frame++;
 
         //右・左の入力
         x = Input.GetAxisRaw("Horizontal");
@@ -55,29 +62,44 @@ public class PlayerMovement : MonoBehaviour
         //移動とスピードを代入
         rb.velocity = direction * speed;
 
+        //レートをカウント
+        frame++;
+
+
         //スペースを押してる＆10秒ごとに弾を発射
-        if(Input.GetKey(KeyCode.Space)&& frame % count == 0)
+        if (Input.GetKey(KeyCode.Space) && frame % count == 0)
         {
-            Instantiate(bullet, transform.position, transform.rotation);
-            
+            //Itemcountが0の時は通常攻撃
+            if (Itemcount == 0)
+            {
+                Instantiate(bullet, Shotobject1.position, transform.rotation);
+            }
+
+            //Itemcountが1の時は攻撃を変える
+            if (Itemcount == 1)
+            {
+                Instantiate(bullet, Shotobject2.position, transform.rotation);
+                Instantiate(bullet, Shotobject3.position, transform.rotation);
+            }
+
         }
 
-      
+        
+       
+
+
 
     }
 
-
-    //bulletの発射処理(完全オート）
-    /*IEnumerator Shot()
+    //アイテムをとる判定
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        while (true)
+        if (collision.gameObject.tag == "Item")
         {
-            //bulletを生成
-            Instantiate(bullet, transform.position, transform.rotation);
-
-            //wait time
-            yield return new WaitForSeconds(100f);
+            Itemcount += 1;
         }
-    }*/
+    }
+
+
 
 }
