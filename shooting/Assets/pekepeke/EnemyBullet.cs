@@ -4,17 +4,23 @@ using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
-    [SerializeField] float EBspeed = 5;
-    private Rigidbody2D rb;
-    // Start is called before the first frame update
-    void Start()
+    float dx;
+    float dy;
+    public void Setting(float angle,float speed)
     {
-        rb = GetComponent<Rigidbody2D>();
+        dx = Mathf.Cos(angle) * speed;
+        dy = Mathf.Sin(angle) * speed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        rb.velocity = transform.forward * EBspeed;
+        transform.position += new Vector3(dx, dy, 0) * Time.deltaTime;
+        if(transform.position.x < -10 || transform.position.x > 10 ||
+            transform.position.y < -10 || transform.position.y > 10)
+        {
+            Destroy(gameObject);
+        }
     }
+    
 }

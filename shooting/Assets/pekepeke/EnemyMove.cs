@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class EnemyMove : MonoBehaviour
 {
-    [SerializeField] GameObject Ebullet;
-    private float k;
-    public Quaternion rotation = Quaternion.identity;
+    public EnemyBullet Ebullet;
+    GameObject player;
+
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine("BulletSet");
-        k = 0;
+        player = GameObject.Find("Player");
+        StartCoroutine(CPU());
     }
 
     // Update is called once per frame
@@ -20,14 +20,87 @@ public class EnemyMove : MonoBehaviour
         
     }
 
-    IEnumerator BulletSet()
+    void Shot(float angle,float speed)
     {
-        for (int i = 0; i < 40; i++)
+        EnemyBullet bullet = Instantiate(Ebullet, transform.position, transform.rotation);
+        bullet.Setting(angle,speed);
+    }
+
+    IEnumerator CPU()
+    {
+        while(true)
         {
-            rotation.eulerAngles = new Vector3(0, k, 0);
+            yield return WaveNShotMCurve(2, 16);
+            yield return new WaitForSeconds(1f);
+            yield return WaveNShotM(3, 20);
+            yield return new WaitForSeconds(1f);
+        }
+        
+
+
+    }
+
+    IEnumerator WaveNShotM(int n,int m)
+    {
+        for(int w = 0;w < n; w++)
+        {
+            ShotN(m, 3);
             yield return new WaitForSeconds(0.3f);
-            Instantiate(Ebullet, transform.position, rotation);
-            k += 10;
+        }
+        
+    }
+
+    IEnumerator WaveNShotMCurve(int n, int m)
+    {
+        for (int w = 0; w < n; w++)
+        {
+            yield return ShotNCurve(m, 3);
+            yield return new WaitForSeconds(0.3f);
+        }
+
+    }
+
+    IEnumerator WaveNPlayerAimShot(int n, int m)
+    {
+        for (int w = 0; w < n; w++)
+        {
+            PlayerAimShot(m, 3);
+            yield return new WaitForSeconds(0.3f);
+        }
+
+    }
+    void ShotN(int count,float speed)
+    {
+        int bulletCount = count;
+        for (int i = 0; i < bulletCount; i++)
+        {
+            float angle = i * (2 * Mathf.PI / bulletCount);
+            Shot(angle,speed);
+        }
+    }
+
+    IEnumerator ShotNCurve(int count, float speed)
+    {
+        int bulletCount = count;
+        for (int i = 0; i < bulletCount; i++)
+        {
+            float angle = i * (2 * Mathf.PI / bulletCount);
+            Shot(angle - Mathf.PI/2f, speed);
+            Shot(-angle - Mathf.PI / 2f, speed);
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+    void PlayerAimShot(int count,float speed)
+    {
+        Vector3 diffPosition = player.transform.position - transform.position;
+        float angleP = Mathf.Atan2(diffPosition.y,diffPosition.x);
+       
+        int bulletCount = count;
+        for (int i = 0; i < bulletCount; i++)
+        {
+            float angle = (i - bulletCount/2f) * ((Mathf.PI/2f) / bulletCount);
+            Shot(angleP + angle, speed);
         }
     }
 }
