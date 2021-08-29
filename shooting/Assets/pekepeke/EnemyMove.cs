@@ -6,18 +6,83 @@ public class EnemyMove : MonoBehaviour
 {
     public EnemyBullet Ebullet;
     GameObject player;
+    int faze = 0;
+    public float Espeed = 1;
+    float moved = 0;
+   
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player");
-        StartCoroutine(CPU());
+        StartCoroutine(CPU1());
+        StartCoroutine(CPU2());
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        switch(faze)
+        {
+            case 0:
+                transform.position -= new Vector3(Espeed, 0, 0) * Time.deltaTime;
+                moved += Espeed * Time.deltaTime;
+                if(moved > 2)
+                {
+                   
+                        faze = 1;
+                        moved = 0;
+                    
+                }
+                break;
+            case 1:
+                transform.position += new Vector3(0, Espeed, 0) * Time.deltaTime;
+                moved += Espeed * Time.deltaTime;
+                if (moved > 2)
+                {
+                   
+                        faze = 2;
+                        moved = 0;
+                    
+                }
+                break;
+            case 2:
+                transform.position += new Vector3(Espeed, 0, 0) * Time.deltaTime;
+                moved += Espeed * Time.deltaTime;
+                if (moved > 4)
+                {
+                    
+                        faze = 3;
+                        moved = 0;
+                    
+                }
+                break;
+            case 3:
+                transform.position -= new Vector3(0, Espeed, 0) * Time.deltaTime;
+                moved += Espeed * Time.deltaTime;
+                if (moved > 2)
+                {
+                    
+                        faze = 4;
+                        moved = 0;
+                    
+                }
+                break;
+            case 4:
+                transform.position -= new Vector3(Espeed, 0, 0) * Time.deltaTime;
+                moved += Espeed * Time.deltaTime;
+                if (moved > 2)
+                {
+                    
+                        faze = 0;
+                        moved = 0;
+                    
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     void Shot(float angle,float speed)
@@ -26,25 +91,35 @@ public class EnemyMove : MonoBehaviour
         bullet.Setting(angle,speed);
     }
 
-    IEnumerator CPU()
+    IEnumerator CPU1()
     {
-        while(true)
+        while (true)
         {
+            yield return new WaitForSeconds(5f);
             yield return WaveNShotMCurve(2, 16);
+        }
+
+        
+    }
+
+    IEnumerator CPU2()
+    {
+        while (true)
+        {
+            yield return WaveNShotM(4, 32);
             yield return new WaitForSeconds(1f);
             yield return WaveNShotM(3, 20);
             yield return new WaitForSeconds(1f);
         }
-        
-
-
     }
+
+    
 
     IEnumerator WaveNShotM(int n,int m)
     {
         for(int w = 0;w < n; w++)
         {
-            ShotN(m, 3);
+            ShotN(m, 1);
             yield return new WaitForSeconds(0.3f);
         }
         
