@@ -36,13 +36,18 @@ public class PlayerMovement : MonoBehaviour
     //アイテムカウント
     int Itemcount;
 
+    //SpriteRendererを格納
+    public SpriteRenderer sp;
 
+    //ダメージ判定のフラグ
+    private bool isDamage { get; set; }
 
     // Start is called before the first frame update
     void Start()
     {
         //Rigidbody2D Conpo を取得して格納
         rb = GetComponent<Rigidbody2D>();
+
 
         Itemcount = 0;//format
     }
@@ -92,14 +97,19 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        
+        //ダメージ判定
+        if (isDamage)
+        {
+            float level = Mathf.Abs(Mathf.Sin(Time.time * 10));
+            sp.color = new Color(1f, 1f, 1f, level);
+        }
        
 
 
 
     }
 
-    //アイテムをとる判定
+    //当たり判定
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //弾を増やすアイテムをとったら
@@ -112,6 +122,31 @@ public class PlayerMovement : MonoBehaviour
         {
             speed += 2;
         }
+
+        //敵に当たったら
+        if(collision.gameObject.tag == "Enemy")
+        {
+            if (isDamage)
+            {
+                return;
+            }
+            StartCoroutine(OnDamage());
+
+        }
+
+        
+
+    }
+
+
+    public IEnumerator OnDamage()
+    {
+        isDamage = true;
+        yield return new WaitForSeconds(3.0f);
+
+        //通常に戻す
+        isDamage = false;
+        sp.color = new Color(1f, 1f, 1f, 1f);
     }
 
 
