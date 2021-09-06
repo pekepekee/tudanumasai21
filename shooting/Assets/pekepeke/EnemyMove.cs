@@ -144,6 +144,16 @@ public class EnemyMove : MonoBehaviour
         }
 
     }
+
+    IEnumerator WaveNPlayerAimShot2(int n)
+    {
+        for (int w = 0; w < n; w++)
+        {
+            PlayerAimShot2(10);
+            yield return new WaitForSeconds(0.05f);
+        }
+
+    }
     void ShotN(int count,float speed)
     {
         int bulletCount = count;
@@ -177,5 +187,13 @@ public class EnemyMove : MonoBehaviour
             float angle = (i - bulletCount/2f) * ((Mathf.PI/2f) / bulletCount);
             Shot(angleP + angle, speed);
         }
+    }
+
+    void PlayerAimShot2(float speed)
+    {
+        Vector3 diffPosition = player.transform.position - transform.position;
+        float angleP = Mathf.Atan2(diffPosition.y, diffPosition.x);
+        Shot(angleP, speed);
+        
     }
 }
