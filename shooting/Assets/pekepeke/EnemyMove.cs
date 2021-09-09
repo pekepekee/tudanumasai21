@@ -95,7 +95,7 @@ public class EnemyMove : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(3f);
             yield return WaveNShotMCurve(2, 16);
         }
 
@@ -110,6 +110,26 @@ public class EnemyMove : MonoBehaviour
             yield return new WaitForSeconds(1f);
             yield return WaveNShotM(3, 20);
             yield return new WaitForSeconds(1f);
+            yield return WaveNPlayerAimShot(5, 6);
+            yield return new WaitForSeconds(0.5f);
+            yield return WaveNPlayerAimShot(5, 6);
+            yield return new WaitForSeconds(0.5f);
+            yield return WaveNPlayerAimShot(5, 6);
+            yield return new WaitForSeconds(0.5f);
+            yield return WaveNShotM(4, 32);
+            yield return new WaitForSeconds(1f);
+            yield return WaveNPlayerAimShot2(6);
+            yield return new WaitForSeconds(0.2f);
+            yield return WaveNPlayerAimShot2(6);
+            yield return new WaitForSeconds(0.2f);
+            yield return WaveNPlayerAimShot2(6);
+            yield return new WaitForSeconds(0.2f);
+            yield return WaveNPlayerAimShot2(6);
+            yield return new WaitForSeconds(0.2f);
+            yield return WaveNPlayerAimShot2(6);
+            yield return new WaitForSeconds(0.2f);
+            yield return WaveNPlayerAimShot2(6);
+            yield return new WaitForSeconds(1);
         }
     }
 
@@ -139,8 +159,8 @@ public class EnemyMove : MonoBehaviour
     {
         for (int w = 0; w < n; w++)
         {
-            PlayerAimShot(m, 3);
-            yield return new WaitForSeconds(0.3f);
+            PlayerAimShot(m, 7);
+            yield return new WaitForSeconds(0.1f);
         }
 
     }
