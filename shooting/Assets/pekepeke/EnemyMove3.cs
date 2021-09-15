@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class EnemyMove : MonoBehaviour
+public class EnemyMove3 : MonoBehaviour
 {
     public EnemyBullet Ebullet;
     GameObject player;
-    int faze = 0;
-    public float Espeed = 1;
-    float moved = 0;
+    int faze = 0;   //移動用Faze
+    public float Espeed = 1;    //敵のスピード
+    float moved = 0;    //移動距離用の変数
+    public int EnemyHP = 300;
    
 
     // Start is called before the first frame update
@@ -215,5 +217,17 @@ public class EnemyMove : MonoBehaviour
         float angleP = Mathf.Atan2(diffPosition.y, diffPosition.x);
         Shot(angleP, speed);
         
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Bullet")
+        {
+            EnemyHP--;
+            if(EnemyHP == 0)
+            {
+                Debug.Log("Clear2");
+            }
+        }
     }
 }
