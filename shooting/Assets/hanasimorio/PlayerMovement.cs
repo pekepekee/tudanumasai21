@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -42,6 +43,12 @@ public class PlayerMovement : MonoBehaviour
     //ダメージ判定のフラグ
     private bool isDamage { get; set; }
 
+    //HP
+    int maxhp = 100;
+    int currenthp;
+    public Slider slider;
+    int EnemyDamage = 20;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +57,11 @@ public class PlayerMovement : MonoBehaviour
 
 
         Itemcount = 0;//format
+
+        slider.value = 1; //HP満タン
+
+        currenthp = maxhp;
+
     }
 
     // Update is called once per frame
@@ -104,7 +116,10 @@ public class PlayerMovement : MonoBehaviour
             sp.color = new Color(1f, 1f, 1f, level);
         }
        
-
+        if(currenthp == 0)
+        {
+            Debug.Log("GameOver");
+        }
 
 
     }
@@ -131,6 +146,12 @@ public class PlayerMovement : MonoBehaviour
                 return;
             }
             StartCoroutine(OnDamage());
+
+            currenthp = currenthp - EnemyDamage;
+            slider.value = (float)currenthp / (float)maxhp; ;
+
+
+            
 
         }
 
