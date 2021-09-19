@@ -8,6 +8,8 @@ TagManager:
   - Shot
   - Item02
   - Enemy
+  - Enemyshot
+  - Item03
   layers:
   - Default
   - TransparentFX
