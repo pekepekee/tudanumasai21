@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     float y;
 
     //Playerの移動速度の変数
-    [SerializeField] float speed = 3;
+    float speed ;
 
     //Bullet プレハブ
     public GameObject bullet;
@@ -52,6 +52,8 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        speed = 10;
+
         //Rigidbody2D Conpo を取得して格納
         rb = GetComponent<Rigidbody2D>();
 
@@ -83,9 +85,19 @@ public class PlayerMovement : MonoBehaviour
         //レートをカウント
         frame++;
 
+        if(Input.GetKeyDown(KeyCode.X))
+        {
+            speed = 3;
+        }
+
+        if(Input.GetKeyUp(KeyCode.X))
+        {
+            speed = 10;
+        }
+
 
         //スペースを押してる＆10秒ごとに弾を発射
-        if (Input.GetKey(KeyCode.Space) && frame % count == 0)
+        if (Input.GetKey(KeyCode.Z) && frame % count == 0)
         {
             //Itemcountが0の時は通常攻撃
             if (Itemcount == 0)
