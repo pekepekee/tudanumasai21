@@ -7,9 +7,9 @@ public class EnemyMove1 : MonoBehaviour
 {
     public EnemyBullet Ebullet;
     GameObject player;
-    int faze = 0;   //移動用Faze
-    public float Espeed = 1;    //敵のスピード
-    float moved = 0;    //移動距離用の変数
+    //int faze = 0;   //移動用Faze
+    //public float Espeed = 1;    //敵のスピード
+    //float moved = 0;    //移動距離用の変数
     public int EnemyHP = 200;
 
 

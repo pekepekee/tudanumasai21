@@ -12,17 +12,17 @@ public class EnemyGenerator : MonoBehaviour
         {
             if(LevelManager.Level == 0)
             {
-                Instantiate(Enemy[0], transform.position, Quaternion.identity);
+                Instantiate(Enemy[0], transform.position, transform.rotation);
             }
 
             if (LevelManager.Level == 1)
             {
-                Instantiate(Enemy[1], transform.position, Quaternion.identity);
+                Instantiate(Enemy[1], transform.position, transform.rotation);
             }
 
             if (LevelManager.Level == 2)
             {
-                Instantiate(Enemy[2], transform.position, Quaternion.identity);
+                Instantiate(Enemy[2], transform.position, transform.rotation);
             }
         }
     }

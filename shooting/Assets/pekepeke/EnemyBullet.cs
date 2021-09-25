@@ -16,11 +16,16 @@ public class EnemyBullet : MonoBehaviour
     void Update()
     {
         transform.position += new Vector3(dx, dy, 0) * Time.deltaTime;
-        if(transform.position.x < -10 || transform.position.x > 10 ||
+        /*if(transform.position.x < -10 || transform.position.x > 10 ||
             transform.position.y < -10 || transform.position.y > 10)
         {
             Destroy(gameObject);
-        }
+        }*/
     }
-    
+
+    private void OnBecameInvisible()
+    {
+        Destroy(this.gameObject);
+    }
+
 }
