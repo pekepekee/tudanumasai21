@@ -49,10 +49,12 @@ public class PlayerMovement : MonoBehaviour
     public Slider slider;
     int EnemyDamage = 20;
 
+    ScoreManager scores;
+
     // Start is called before the first frame update
     void Start()
     {
-        speed = 10;
+        speed = 6;
 
         //Rigidbody2D Conpo を取得して格納
         rb = GetComponent<Rigidbody2D>();
@@ -92,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(Input.GetKeyUp(KeyCode.X))
         {
-            speed = 10;
+            speed = 5;
         }
 
 
@@ -150,8 +152,13 @@ public class PlayerMovement : MonoBehaviour
             speed += 2;
         }
 
+        if(collision.gameObject.tag=="Item03")
+        {
+            scores.score += 500;
+        }
+
         //敵に当たったら
-        if(collision.gameObject.tag == "Enemy")
+        if(collision.gameObject.tag == "Enemyshot")
         {
             if (isDamage)
             {
@@ -160,7 +167,7 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(OnDamage());
 
             currenthp = currenthp - EnemyDamage;
-            slider.value = (float)currenthp / (float)maxhp; ;
+            slider.value = (float)currenthp / (float)maxhp;
 
 
             

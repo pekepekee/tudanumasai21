@@ -11,8 +11,8 @@ public class EnemyMove3 : MonoBehaviour
     public float Espeed = 1;    //敵のスピード
     float moved = 0;    //移動距離用の変数
     public int EnemyHP = 300;
-   
 
+    ScoreManager scores;
     // Start is called before the first frame update
     void Start()
     {
@@ -228,6 +228,11 @@ public class EnemyMove3 : MonoBehaviour
             {
                 Debug.Log("Clear2");
             }
+        }
+
+        if (collision.gameObject.tag == "Shot")
+        {
+            scores.score += 100;
         }
     }
 }

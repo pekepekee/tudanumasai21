@@ -12,6 +12,7 @@ public class EnemyMove2 : MonoBehaviour
     float moved = 0;    //移動距離用の変数
     public int EnemyHP = 250;
 
+    ScoreManager scores;
 
     // Start is called before the first frame update
     void Start()
@@ -170,5 +171,12 @@ public class EnemyMove2 : MonoBehaviour
                 Debug.Log("Clear1");
             }
         }
+
+        if (collision.gameObject.tag == "Shot")
+        {
+            scores.score += 100;
+        }
     }
+
+    
 }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2405484402363097541}
   - component: {fileID: 8475264070459956391}
   - component: {fileID: 527032952114559691}
+  - component: {fileID: 965531673585671229}
   m_Layer: 0
   m_Name: Bulletitem
   m_TagString: Item
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 5071814769382894041}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.2948215, y: -1.8390672, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -121,3 +122,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 637306c283c35d2459210a9b355a4d50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemSpeed: 2
+--- !u!50 &965531673585671229
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5071814769382894041}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

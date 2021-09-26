@@ -27,7 +27,7 @@ public class ItemGenerator : MonoBehaviour
             this.delta = 0;
             number = Random.Range(0, train.Length);
             GameObject go = Instantiate(train[number]) as GameObject;
-            int px = Random.Range(-6, 7);
+            float px = Random.Range(-2.3f, 2.3f);
             go.transform.position = new Vector3(px, 7, 0);
         }
     }

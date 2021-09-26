@@ -12,6 +12,7 @@ public class EnemyMove1 : MonoBehaviour
     //float moved = 0;    //移動距離用の変数
     public int EnemyHP = 200;
 
+    ScoreManager scores;
 
     // Start is called before the first frame update
     void Start()
@@ -49,9 +50,9 @@ public class EnemyMove1 : MonoBehaviour
     {
         while (true)
         {
-            yield return WaveNShotM(4, 32);
+            yield return WaveNShotM(4, 16);
             yield return new WaitForSeconds(1f);
-            yield return WaveNShotM(3, 20);
+            yield return WaveNShotM(3, 8);
             yield return new WaitForSeconds(1f);
             yield return WaveNPlayerAimShot(5, 6);
             yield return new WaitForSeconds(0.5f);
@@ -59,7 +60,7 @@ public class EnemyMove1 : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             yield return WaveNPlayerAimShot(5, 6);
             yield return new WaitForSeconds(0.5f);
-            yield return WaveNShotM(4, 32);
+            yield return WaveNShotM(4, 16);
             yield return new WaitForSeconds(1f);
             
         }
@@ -158,6 +159,11 @@ public class EnemyMove1 : MonoBehaviour
             {
                 Debug.Log("Clear1");
             }
+        }
+
+        if(collision.gameObject.tag=="Shot")
+        {
+            scores.score += 100;
         }
     }
 }
