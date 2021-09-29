@@ -12,7 +12,6 @@ public class EnemyMove3 : MonoBehaviour
     float moved = 0;    //移動距離用の変数
     public int EnemyHP = 300;
 
-    ScoreManager scores;
     // Start is called before the first frame update
     void Start()
     {
@@ -223,6 +222,7 @@ public class EnemyMove3 : MonoBehaviour
     {
         if(collision.gameObject.tag == "Bullet")
         {
+            ScoreManager.score += 100;
             EnemyHP--;
             if(EnemyHP == 0)
             {
@@ -230,9 +230,5 @@ public class EnemyMove3 : MonoBehaviour
             }
         }
 
-        if (collision.gameObject.tag == "Shot")
-        {
-            scores.score += 100;
-        }
     }
 }

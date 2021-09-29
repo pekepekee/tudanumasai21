@@ -49,8 +49,6 @@ public class PlayerMovement : MonoBehaviour
     public Slider slider;
     int EnemyDamage = 20;
 
-    ScoreManager scores;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -154,7 +152,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(collision.gameObject.tag=="Item03")
         {
-            scores.score += 500;
+            ScoreManager.score += 500;
         }
 
         //敵に当たったら

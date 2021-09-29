@@ -12,8 +12,6 @@ public class EnemyMove1 : MonoBehaviour
     //float moved = 0;    //移動距離用の変数
     public int EnemyHP = 200;
 
-    ScoreManager scores;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -51,17 +49,17 @@ public class EnemyMove1 : MonoBehaviour
         while (true)
         {
             yield return WaveNShotM(4, 16);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2f);
             yield return WaveNShotM(3, 8);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2f);
             yield return WaveNPlayerAimShot(5, 6);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1.0f);
             yield return WaveNPlayerAimShot(5, 6);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1.0f);
             yield return WaveNPlayerAimShot(5, 6);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1.0f);
             yield return WaveNShotM(4, 16);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2f);
             
         }
     }
@@ -92,7 +90,7 @@ public class EnemyMove1 : MonoBehaviour
     {
         for (int w = 0; w < n; w++)
         {
-            PlayerAimShot(m, 7);
+            PlayerAimShot(m, 4);
             yield return new WaitForSeconds(0.1f);
         }
 
@@ -152,8 +150,9 @@ public class EnemyMove1 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Bullet")
+        if (collision.gameObject.tag == "Shot")
         {
+            ScoreManager.score += 100;
             EnemyHP--;
             if (EnemyHP == 0)
             {
@@ -161,9 +160,5 @@ public class EnemyMove1 : MonoBehaviour
             }
         }
 
-        if(collision.gameObject.tag=="Shot")
-        {
-            scores.score += 100;
-        }
     }
 }

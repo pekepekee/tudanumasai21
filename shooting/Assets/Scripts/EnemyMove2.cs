@@ -12,7 +12,6 @@ public class EnemyMove2 : MonoBehaviour
     float moved = 0;    //移動距離用の変数
     public int EnemyHP = 250;
 
-    ScoreManager scores;
 
     // Start is called before the first frame update
     void Start()
@@ -163,8 +162,9 @@ public class EnemyMove2 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Bullet")
+        if (collision.gameObject.tag == "Shot")
         {
+            ScoreManager.score += 100;
             EnemyHP--;
             if (EnemyHP == 0)
             {
@@ -172,10 +172,6 @@ public class EnemyMove2 : MonoBehaviour
             }
         }
 
-        if (collision.gameObject.tag == "Shot")
-        {
-            scores.score += 100;
-        }
     }
 
     
