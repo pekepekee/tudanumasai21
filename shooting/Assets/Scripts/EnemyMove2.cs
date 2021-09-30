@@ -168,7 +168,7 @@ public class EnemyMove2 : MonoBehaviour
             EnemyHP--;
             if (EnemyHP == 0)
             {
-                Debug.Log("Clear1");
+                SceneManager.LoadScene("ClearScene1");
             }
         }
 

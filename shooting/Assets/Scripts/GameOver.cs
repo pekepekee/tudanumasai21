@@ -19,11 +19,13 @@ public class GameOver : MonoBehaviour
 
     public void Onclickretry()
     {
+        ScoreManager.score = 0;
         SceneManager.LoadScene("GameScene");
     }
 
     public void Onclicktitle()
     {
+        ScoreManager.score = 0;
         SceneManager.LoadScene("TitleScene");
     }
 }

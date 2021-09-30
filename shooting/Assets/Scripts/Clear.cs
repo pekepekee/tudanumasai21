@@ -22,12 +22,14 @@ public class Clear : MonoBehaviour
 
     public void OnclickNextlevel()
     {
+        ScoreManager.score = 0;
         LevelManager.Level++;
         SceneManager.LoadScene("GameScene");
     }
 
     public void OnclickTitle()
     {
+        ScoreManager.score = 0;
         SceneManager.LoadScene("TitleScene");
     }
 }
