@@ -93,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(Input.GetKeyUp(KeyCode.X))
         {
-            speed = 5;
+            speed = 6;
         }
 
 
