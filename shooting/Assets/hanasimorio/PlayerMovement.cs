@@ -50,10 +50,17 @@ public class PlayerMovement : MonoBehaviour
     public Slider slider;
     int EnemyDamage = 20;
 
+    float CurrentSpeed;
+    float StartSpeed;
+
+    //SpeedItemカウント
+    int SpeedItemCount = 0;
+
     // Start is called before the first frame update
     void Start()
     {
         speed = 6;
+        StartSpeed = speed;
 
         //Rigidbody2D Conpo を取得して格納
         rb = GetComponent<Rigidbody2D>();
@@ -81,20 +88,24 @@ public class PlayerMovement : MonoBehaviour
         Vector2 direction = new Vector2(x, y).normalized;
 
         //移動とスピードを代入
-        rb.velocity = direction * speed;
+        rb.velocity = direction * CurrentSpeed;
 
         //レートをカウント
         frame++;
 
         if(Input.GetKeyDown(KeyCode.X))
         {
-            speed = 3;
+            CurrentSpeed = 3;
         }
 
         if(Input.GetKeyUp(KeyCode.X))
         {
-            speed = 6;
+            CurrentSpeed = speed + SpeedItemCount;
         }
+
+        
+
+        Debug.Log(CurrentSpeed);
 
 
         //スペースを押してる＆10秒ごとに弾を発射
@@ -148,7 +159,9 @@ public class PlayerMovement : MonoBehaviour
         //速度が上がるアイテムをとったら
         if(collision.gameObject.tag == "Item02")
         {
-            speed += 2;
+            SpeedItemCount += 1;
+            //SpeedUp
+            CurrentSpeed = speed + SpeedItemCount;
         }
 
         if(collision.gameObject.tag=="Item03")
