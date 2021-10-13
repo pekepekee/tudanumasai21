@@ -14,7 +14,9 @@ public class PlayerMovement : MonoBehaviour
     float y;
 
     //Playerの移動速度の変数
-    float speed ;
+    //float speed ;
+    float CurrentSpeed;
+    float StartSpeed;
 
     //Bullet プレハブ
     public GameObject bullet;
@@ -50,8 +52,6 @@ public class PlayerMovement : MonoBehaviour
     public Slider slider;
     int EnemyDamage = 20;
 
-    float CurrentSpeed;
-    float StartSpeed;
 
     //SpeedItemカウント
     int SpeedItemCount = 0;
@@ -59,8 +59,8 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = 6;
-        StartSpeed = speed;
+        CurrentSpeed = 6;
+        StartSpeed = 6;
 
         //Rigidbody2D Conpo を取得して格納
         rb = GetComponent<Rigidbody2D>();
@@ -100,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(Input.GetKeyUp(KeyCode.X))
         {
-            CurrentSpeed = speed + SpeedItemCount;
+            CurrentSpeed = StartSpeed + SpeedItemCount;
         }
 
         
@@ -161,7 +161,7 @@ public class PlayerMovement : MonoBehaviour
         {
             SpeedItemCount += 1;
             //SpeedUp
-            CurrentSpeed = speed + SpeedItemCount;
+            CurrentSpeed = StartSpeed + SpeedItemCount;
         }
 
         if(collision.gameObject.tag=="Item03")
