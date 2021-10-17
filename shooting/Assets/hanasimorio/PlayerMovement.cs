@@ -56,6 +56,11 @@ public class PlayerMovement : MonoBehaviour
     //SpeedItemカウント
     int SpeedItemCount = 0;
 
+    AudioSource AS;
+
+    public AudioClip item;
+    public AudioClip damage;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -71,6 +76,8 @@ public class PlayerMovement : MonoBehaviour
         slider.value = 1; //HP満タン
 
         currenthp = maxhp;
+
+        AS = GetComponent<AudioSource>();
 
     }
 
@@ -154,11 +161,13 @@ public class PlayerMovement : MonoBehaviour
         //弾を増やすアイテムをとったら
         if (collision.gameObject.tag == "Item")
         {
+            AS.PlayOneShot(item);
             Itemcount += 1;
         }
         //速度が上がるアイテムをとったら
         if(collision.gameObject.tag == "Item02")
         {
+            AS.PlayOneShot(item);
             SpeedItemCount += 1;
             //SpeedUp
             CurrentSpeed = StartSpeed + SpeedItemCount;
@@ -166,6 +175,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(collision.gameObject.tag=="Item03")
         {
+            AS.PlayOneShot(item);
             ScoreManager.score += 500;
         }
 
@@ -177,7 +187,7 @@ public class PlayerMovement : MonoBehaviour
                 return;
             }
             StartCoroutine(OnDamage());
-
+            AS.PlayOneShot(damage);
             currenthp = currenthp - EnemyDamage;
             slider.value = (float)currenthp / (float)maxhp;
 
