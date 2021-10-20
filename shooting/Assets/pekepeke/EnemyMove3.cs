@@ -114,21 +114,21 @@ public class EnemyMove3 : MonoBehaviour
             yield return WaveNPlayerAimShot(5, 6);
             yield return new WaitForSeconds(0.5f);
             yield return WaveNPlayerAimShot(5, 6);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1.5f);
             yield return WaveNPlayerAimShot(5, 6);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1.5f);
             yield return WaveNShotM(4, 32);
             yield return new WaitForSeconds(1f);
             yield return WaveNPlayerAimShot2(6);
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.7f);
             yield return WaveNPlayerAimShot2(6);
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.7f);
             yield return WaveNPlayerAimShot2(6);
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.7f);
             yield return WaveNPlayerAimShot2(6);
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.7f);
             yield return WaveNPlayerAimShot2(6);
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.7f);
             yield return WaveNPlayerAimShot2(6);
             yield return new WaitForSeconds(1);
         }
@@ -140,7 +140,7 @@ public class EnemyMove3 : MonoBehaviour
     {
         for(int w = 0;w < n; w++)
         {
-            ShotN(m, 1);
+            ShotN(m, 3);
             yield return new WaitForSeconds(0.3f);
         }
         
@@ -160,7 +160,7 @@ public class EnemyMove3 : MonoBehaviour
     {
         for (int w = 0; w < n; w++)
         {
-            PlayerAimShot(m, 7);
+            PlayerAimShot(m, 6);
             yield return new WaitForSeconds(0.1f);
         }
 
@@ -170,7 +170,7 @@ public class EnemyMove3 : MonoBehaviour
     {
         for (int w = 0; w < n; w++)
         {
-            PlayerAimShot2(10);
+            PlayerAimShot2(7);
             yield return new WaitForSeconds(0.05f);
         }
 
@@ -220,7 +220,7 @@ public class EnemyMove3 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Bullet")
+        if(collision.gameObject.tag == "Shot")
         {
             ScoreManager.score += 100;
             EnemyHP--;
