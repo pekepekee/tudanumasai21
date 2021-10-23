@@ -132,7 +132,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
             //Itemcount = 2
-            if(Itemcount == 2)
+            if(Itemcount >= 2)
             {
                 Instantiate(bullet, Shotobject4.position, transform.rotation);
                 Instantiate(bullet, Shotobject5.position, transform.rotation);
