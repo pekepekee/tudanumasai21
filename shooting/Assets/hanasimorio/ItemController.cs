@@ -18,6 +18,11 @@ public class ItemController : MonoBehaviour
     void Update()
     {
         rb.velocity = new Vector2(0, -ItemSpeed);
+        if (transform.position.x < -7.5 || transform.position.x > 7.5 ||
+            transform.position.y < -7.5 || transform.position.y > 7.5)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -30,9 +35,6 @@ public class ItemController : MonoBehaviour
     }
 
     //カメラに映らなくなったら破壊
-    private void OnBecameInvisible()
-    {
-        Destroy(gameObject);
-    }
+    
 
 }

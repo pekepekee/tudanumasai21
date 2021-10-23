@@ -165,4 +165,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Ebullet: {fileID: 3799842623847142483, guid: 855eb0fdf3650534a8fc12388c009ffe, type: 3}
-  EnemyHP: 200
+  maxHP: 200
+  slider: {fileID: 4205040482978830243, guid: e54733cc5dd2c2a44a19df0a850e58e4, type: 3}

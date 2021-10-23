@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class EnemyMove1 : MonoBehaviour
 {
@@ -10,11 +11,15 @@ public class EnemyMove1 : MonoBehaviour
     //int faze = 0;   //移動用Faze
     //public float Espeed = 1;    //敵のスピード
     //float moved = 0;    //移動距離用の変数
-    public int EnemyHP = 200;
+    public int maxHP = 200;
+    int EnemyHP;
+    public Slider slider;
 
     // Start is called before the first frame update
     void Start()
     {
+        slider.value = 1;
+        EnemyHP = maxHP;
         player = GameObject.Find("Player");
         //StartCoroutine(CPU1());
         StartCoroutine(CPU2());
@@ -154,6 +159,7 @@ public class EnemyMove1 : MonoBehaviour
         {
             ScoreManager.score += 100;
             EnemyHP--;
+            slider.value = (float)EnemyHP / (float)maxHP;
             if (EnemyHP == 0)
             {
                 SceneManager.LoadScene("ClearScene1");

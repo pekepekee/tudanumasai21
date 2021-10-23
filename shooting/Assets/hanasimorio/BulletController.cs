@@ -20,15 +20,11 @@ public class BulletController : MonoBehaviour
     void Update()
     {   //前方に球を発射
         rb.velocity = new Vector2(0, bs);
+        Destroy(gameObject, 2.5f);
 
     }
 
 
-    //カメラに映らなくなったら破壊
-    private void OnBecameInvisible()
-    {
-        Destroy(gameObject);
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
